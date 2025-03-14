@@ -17,7 +17,7 @@ model User {
   name              String?
   password          String?
   image             String?
-  role              UserRole            @default(CITIZEN)
+  role              String              @default("CITIZEN") // Instead of UserRole enum
   emailVerified     DateTime?
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @updatedAt
@@ -30,13 +30,6 @@ model User {
   account           Account[]
   session           Session[]
   representative    Representative?
-}
-
-enum UserRole {
-  ADMIN
-  REPRESENTATIVE
-  STAFF
-  CITIZEN
 }
 
 // Auth Models for NextAuth
@@ -148,7 +141,7 @@ model Bill {
   id              String          @id @default(cuid())
   title           String
   description     String
-  status          BillStatus
+  status          String          // Instead of BillStatus enum
   introducedDate  DateTime
   lastUpdatedDate DateTime
   category        String
@@ -158,51 +151,27 @@ model Bill {
   votingRecords   VotingRecord[]
 }
 
-enum BillStatus {
-  INTRODUCED
-  IN_COMMITTEE
-  PASSED_HOUSE
-  PASSED_SENATE
-  ENACTED
-  DEFEATED
-}
-
 model VotingRecord {
   id              String          @id @default(cuid())
   billId          String
   bill            Bill            @relation(fields: [billId], references: [id])
   representativeId String
   representative  Representative  @relation(fields: [representativeId], references: [id])
-  vote            Vote
+  vote            String          // Instead of Vote enum
   date            DateTime
   explanation     String?
 
   @@unique([billId, representativeId])
 }
 
-enum Vote {
-  YES
-  NO
-  ABSTAIN
-  ABSENT
-}
-
 model ParliamentaryActivity {
   id              String          @id @default(cuid())
   representativeId String
   representative  Representative  @relation(fields: [representativeId], references: [id])
-  activityType    ActivityType
+  activityType    String          // Instead of ActivityType enum
   date            DateTime
   description     String
   documentUrl     String?
-}
-
-enum ActivityType {
-  SPEECH
-  QUESTION
-  MOTION
-  COMMITTEE_WORK
-  OTHER
 }
 
 model Statement {
@@ -221,21 +190,13 @@ model Project {
   id              String          @id @default(cuid())
   title           String
   description     String
-  status          ProjectStatus
+  status          String          // Instead of ProjectStatus enum
   budget          Float
   startDate       DateTime
   endDate         DateTime?
   constituencyId  String
   constituency    Constituency    @relation(fields: [constituencyId], references: [id])
   updates         ProjectUpdate[]
-}
-
-enum ProjectStatus {
-  PROPOSED
-  APPROVED
-  IN_PROGRESS
-  COMPLETED
-  CANCELLED
 }
 
 model ProjectUpdate {
@@ -252,18 +213,10 @@ model PerformanceMetric {
   id              String          @id @default(cuid())
   representativeId String
   representative  Representative  @relation(fields: [representativeId], references: [id])
-  metricType      MetricType
+  metricType      String          // Instead of MetricType enum
   value           Float
   period          String          // e.g., "Q1 2023", "2022-2023"
   description     String?
-}
-
-enum MetricType {
-  ATTENDANCE_RATE
-  BILLS_SPONSORED
-  QUESTIONS_ASKED
-  CONSTITUENCY_VISITS
-  RESPONSE_RATE
 }
 
 // Communication models
@@ -287,14 +240,8 @@ model Petition {
   targetCount     Int
   createdAt       DateTime            @default(now())
   expiresAt       DateTime
-  status          PetitionStatus      @default(ACTIVE)
+  status          String              @default("ACTIVE")  // Instead of PetitionStatus enum
   signatures      PetitionSignature[]
-}
-
-enum PetitionStatus {
-  ACTIVE
-  COMPLETED
-  EXPIRED
 }
 
 model PetitionSignature {
@@ -314,14 +261,6 @@ model Feedback {
   userId          String
   user            User            @relation(fields: [userId], references: [id])
   content         String
-  category        FeedbackCategory
+  category        String          // Instead of FeedbackCategory enum
   createdAt       DateTime        @default(now())
-}
-
-enum FeedbackCategory {
-  PLATFORM_FEEDBACK
-  REPRESENTATIVE_FEEDBACK
-  FEATURE_REQUEST
-  BUG_REPORT
-  OTHER
 }

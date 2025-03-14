@@ -1,4 +1,3 @@
-import { User, UserRole } from "@prisma/client";
 import { Session } from "next-auth";
 
 // Extend the next-auth session type to include our custom fields
@@ -9,7 +8,7 @@ declare module "next-auth" {
             name?: string | null;
             email?: string | null;
             image?: string | null;
-            role?: UserRole;
+            role?: string;
             constituencyId?: string | null;
         };
     }
@@ -32,6 +31,7 @@ export interface RepresentativeType {
         image: string | null;
     };
     constituency: {
+        id?: string;
         name: string;
         parish: string;
     };

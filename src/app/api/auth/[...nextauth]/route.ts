@@ -4,18 +4,17 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
-import { UserRole } from "@prisma/client";
 
 // Add type declaration for the custom user properties
 declare module "next-auth" {
     interface User {
-        role?: UserRole;
+        role?: string;
         constituencyId?: string | null;
     }
 }
 
 export const authOptions: NextAuthOptions = {
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(prisma as any),
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID || "",
