@@ -32,7 +32,7 @@ export default function PerformanceMetrics({ metrics }: PerformanceMetricsProps)
         : [];
 
     // Get unique periods for the dropdown
-    const periods = [...new Set(metrics.map((metric) => metric.period))];
+    const periods = Array.from(new Set(metrics.map((metric) => metric.period)));
 
     // Format metric type for display
     const formatMetricType = (type: string) => {

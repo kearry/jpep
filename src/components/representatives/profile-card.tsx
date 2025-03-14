@@ -43,7 +43,7 @@ export default function ProfileCard({ representative, showActions = true }: Prof
                     </div>
                     <p className="text-sm mt-2">
                         Representative for{" "}
-                        <Link href={`/constituencies/${constituency.id}`} className="font-medium hover:underline">
+                        <Link href={`/constituencies/${representative.constituencyId}`} className="font-medium hover:underline">
                             {constituency.name}, {constituency.parish}
                         </Link>
                     </p>

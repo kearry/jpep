@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate, timeAgo, getPartyInfo } from "@/lib/utils";
 import { ParliamentaryActivityType } from "@/types";
 import { FileText, MessageSquare, Vote, Calendar, AlertCircle } from "lucide-react";
+import * as React from "react";
 
 interface RecentActivityProps {
     limit?: number;

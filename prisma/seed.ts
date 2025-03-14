@@ -1,4 +1,4 @@
-import { PrismaClient, UserRole } from "@prisma/client";
+import { PrismaClient, UserRole, BillStatus, ProjectStatus, MetricType, ActivityType, PetitionStatus } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -361,7 +361,7 @@ async function main() {
         {
             title: "Urban Renewal and Development Act",
             description: "An act to establish a framework for the renewal and development of urban areas across Jamaica",
-            status: "PASSED_HOUSE",
+            status: BillStatus.PASSED_HOUSE,
             introducedDate: new Date(2024, 8, 15),
             lastUpdatedDate: new Date(2024, 10, 10),
             category: "Urban Development",
@@ -371,7 +371,7 @@ async function main() {
         {
             title: "Education Reform Bill",
             description: "A bill to modernize the education system and improve educational outcomes across Jamaica",
-            status: "IN_COMMITTEE",
+            status: BillStatus.IN_COMMITTEE,
             introducedDate: new Date(2024, 7, 20),
             lastUpdatedDate: new Date(2024, 9, 5),
             category: "Education",
@@ -381,7 +381,7 @@ async function main() {
         {
             title: "Agricultural Investment and Innovation Act",
             description: "An act to promote investment and innovation in Jamaica's agricultural sector",
-            status: "INTRODUCED",
+            status: BillStatus.INTRODUCED,
             introducedDate: new Date(2024, 9, 30),
             lastUpdatedDate: new Date(2024, 10, 15),
             category: "Agriculture",
@@ -470,7 +470,7 @@ async function main() {
         {
             title: "Downtown Market Renovation",
             description: "Renovation of the historic downtown market to improve facilities for vendors and shoppers",
-            status: "IN_PROGRESS",
+            status: ProjectStatus.IN_PROGRESS,
             budget: 25000000,
             startDate: new Date(2024, 2, 15),
             endDate: new Date(2025, 2, 15),
@@ -479,7 +479,7 @@ async function main() {
         {
             title: "Youth Technology Center",
             description: "Establishment of a technology training center to provide digital skills training for youth",
-            status: "APPROVED",
+            status: ProjectStatus.APPROVED,
             budget: 18000000,
             startDate: new Date(2024, 11, 1),
             constituencyId: kingstonCentral.id
@@ -490,7 +490,7 @@ async function main() {
         {
             title: "Community Library Expansion",
             description: "Expansion of the community library to include digital resources and a learning center",
-            status: "COMPLETED",
+            status: ProjectStatus.COMPLETED,
             budget: 12000000,
             startDate: new Date(2023, 6, 10),
             endDate: new Date(2024, 5, 20),
@@ -499,7 +499,7 @@ async function main() {
         {
             title: "Public Park Rehabilitation",
             description: "Rehabilitation of the central park with improved facilities, lighting, and accessibility",
-            status: "IN_PROGRESS",
+            status: ProjectStatus.IN_PROGRESS,
             budget: 15000000,
             startDate: new Date(2024, 8, 5),
             endDate: new Date(2025, 4, 30),
@@ -511,7 +511,7 @@ async function main() {
         {
             title: "Rural Road Improvement",
             description: "Improvement of rural road infrastructure to enhance connectivity for farming communities",
-            status: "IN_PROGRESS",
+            status: ProjectStatus.IN_PROGRESS,
             budget: 30000000,
             startDate: new Date(2024, 4, 1),
             endDate: new Date(2025, 3, 30),
@@ -520,7 +520,7 @@ async function main() {
         {
             title: "Agricultural Training Center",
             description: "Establishment of a training center to provide modern farming techniques and business skills",
-            status: "PROPOSED",
+            status: ProjectStatus.PROPOSED,
             budget: 22000000,
             startDate: new Date(2025, 1, 15),
             constituencyId: clarendonNorthern.id
@@ -599,35 +599,35 @@ async function main() {
         // Kingston Central Rep metrics
         {
             representativeId: kingstonRepData.id,
-            metricType: "ATTENDANCE_RATE",
+            metricType: MetricType.ATTENDANCE_RATE,
             value: 92.5,
             period: "2024-Q1",
             description: "Percentage of parliamentary sessions attended"
         },
         {
             representativeId: kingstonRepData.id,
-            metricType: "BILLS_SPONSORED",
+            metricType: MetricType.BILLS_SPONSORED,
             value: 3,
             period: "2024-Q1",
             description: "Number of bills sponsored or co-sponsored"
         },
         {
             representativeId: kingstonRepData.id,
-            metricType: "QUESTIONS_ASKED",
+            metricType: MetricType.QUESTIONS_ASKED,
             value: 15,
             period: "2024-Q1",
             description: "Number of parliamentary questions asked"
         },
         {
             representativeId: kingstonRepData.id,
-            metricType: "CONSTITUENCY_VISITS",
+            metricType: MetricType.CONSTITUENCY_VISITS,
             value: 8,
             period: "2024-Q1",
             description: "Number of official constituency visits/meetings"
         },
         {
             representativeId: kingstonRepData.id,
-            metricType: "RESPONSE_RATE",
+            metricType: MetricType.RESPONSE_RATE,
             value: 78.3,
             period: "2024-Q1",
             description: "Percentage of constituent inquiries responded to within 5 business days"
@@ -635,35 +635,35 @@ async function main() {
         // St. Andrew Western Rep metrics
         {
             representativeId: stAndrewRepData.id,
-            metricType: "ATTENDANCE_RATE",
+            metricType: MetricType.ATTENDANCE_RATE,
             value: 88.7,
             period: "2024-Q1",
             description: "Percentage of parliamentary sessions attended"
         },
         {
             representativeId: stAndrewRepData.id,
-            metricType: "BILLS_SPONSORED",
+            metricType: MetricType.BILLS_SPONSORED,
             value: 2,
             period: "2024-Q1",
             description: "Number of bills sponsored or co-sponsored"
         },
         {
             representativeId: stAndrewRepData.id,
-            metricType: "QUESTIONS_ASKED",
+            metricType: MetricType.QUESTIONS_ASKED,
             value: 22,
             period: "2024-Q1",
             description: "Number of parliamentary questions asked"
         },
         {
             representativeId: stAndrewRepData.id,
-            metricType: "CONSTITUENCY_VISITS",
+            metricType: MetricType.CONSTITUENCY_VISITS,
             value: 12,
             period: "2024-Q1",
             description: "Number of official constituency visits/meetings"
         },
         {
             representativeId: stAndrewRepData.id,
-            metricType: "RESPONSE_RATE",
+            metricType: MetricType.RESPONSE_RATE,
             value: 85.2,
             period: "2024-Q1",
             description: "Percentage of constituent inquiries responded to within 5 business days"
@@ -671,35 +671,35 @@ async function main() {
         // Clarendon Northern Rep metrics
         {
             representativeId: clarendonRepData.id,
-            metricType: "ATTENDANCE_RATE",
+            metricType: MetricType.ATTENDANCE_RATE,
             value: 94.0,
             period: "2024-Q1",
             description: "Percentage of parliamentary sessions attended"
         },
         {
             representativeId: clarendonRepData.id,
-            metricType: "BILLS_SPONSORED",
+            metricType: MetricType.BILLS_SPONSORED,
             value: 1,
             period: "2024-Q1",
             description: "Number of bills sponsored or co-sponsored"
         },
         {
             representativeId: clarendonRepData.id,
-            metricType: "QUESTIONS_ASKED",
+            metricType: MetricType.QUESTIONS_ASKED,
             value: 8,
             period: "2024-Q1",
             description: "Number of parliamentary questions asked"
         },
         {
             representativeId: clarendonRepData.id,
-            metricType: "CONSTITUENCY_VISITS",
+            metricType: MetricType.CONSTITUENCY_VISITS,
             value: 15,
             period: "2024-Q1",
             description: "Number of official constituency visits/meetings"
         },
         {
             representativeId: clarendonRepData.id,
-            metricType: "RESPONSE_RATE",
+            metricType: MetricType.RESPONSE_RATE,
             value: 72.8,
             period: "2024-Q1",
             description: "Percentage of constituent inquiries responded to within 5 business days"
@@ -776,42 +776,42 @@ async function main() {
     const activities = [
         {
             representativeId: kingstonRepData.id,
-            activityType: "SPEECH",
+            activityType: ActivityType.SPEECH,
             date: new Date(2024, 10, 5),
             description: "Speech on the importance of urban renewal for economic development",
             documentUrl: "/documents/speeches/urban-renewal-speech.pdf"
         },
         {
             representativeId: kingstonRepData.id,
-            activityType: "MOTION",
+            activityType: ActivityType.MOTION,
             date: new Date(2024, 9, 18),
             description: "Motion to increase funding for youth entrepreneurship programs",
             documentUrl: null
         },
         {
             representativeId: stAndrewRepData.id,
-            activityType: "QUESTION",
+            activityType: ActivityType.QUESTION,
             date: new Date(2024, 10, 8),
             description: "Question to Minister of Education regarding teacher training programs",
             documentUrl: null
         },
         {
             representativeId: stAndrewRepData.id,
-            activityType: "COMMITTEE_WORK",
+            activityType: ActivityType.COMMITTEE_WORK,
             date: new Date(2024, 9, 22),
             description: "Chaired meeting of the Education and Human Resources Committee",
             documentUrl: "/documents/committee/education-meeting-minutes.pdf"
         },
         {
             representativeId: clarendonRepData.id,
-            activityType: "SPEECH",
+            activityType: ActivityType.SPEECH,
             date: new Date(2024, 9, 28),
             description: "Speech on the need for increased investment in agricultural innovation",
             documentUrl: "/documents/speeches/agricultural-innovation-speech.pdf"
         },
         {
             representativeId: clarendonRepData.id,
-            activityType: "MOTION",
+            activityType: ActivityType.MOTION,
             date: new Date(2024, 8, 15),
             description: "Motion to improve rural road infrastructure",
             documentUrl: null
@@ -834,7 +834,7 @@ async function main() {
             targetCount: 5000,
             createdAt: new Date(2024, 8, 1),
             expiresAt: new Date(2024, 11, 1),
-            status: "ACTIVE"
+            status: PetitionStatus.ACTIVE
         },
         {
             title: "Increase Funding for Public Schools",
@@ -842,7 +842,7 @@ async function main() {
             targetCount: 10000,
             createdAt: new Date(2024, 7, 15),
             expiresAt: new Date(2024, 10, 15),
-            status: "COMPLETED"
+            status: PetitionStatus.COMPLETED
         },
         {
             title: "Support for Small Farmers",
@@ -850,7 +850,7 @@ async function main() {
             targetCount: 3000,
             createdAt: new Date(2024, 9, 10),
             expiresAt: new Date(2025, 0, 10),
-            status: "ACTIVE"
+            status: PetitionStatus.ACTIVE
         }
     ];
 

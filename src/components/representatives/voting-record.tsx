@@ -36,7 +36,11 @@ export default function VotingRecord({ records }: VotingRecordProps) {
     const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
 
     // Get unique categories for filtering
-    const categories = [...new Set(records.map((record) => record.bill.category))];
+    const categoriesSet = new Set<string>();
+    records.forEach(record => {
+        categoriesSet.add(record.bill.category);
+    });
+    const categories = Array.from(categoriesSet);
 
     // Filter records based on selected filters
     const filteredRecords = records.filter((record) => {

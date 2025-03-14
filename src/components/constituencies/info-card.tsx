@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ConstituencyType } from "@/types";
 import { formatNumber, getPartyInfo } from "@/lib/utils";
 import { Users, UserCheck, Map } from "lucide-react";
+import * as React from "react";
 
 interface InfoCardProps {
     constituency: ConstituencyType;

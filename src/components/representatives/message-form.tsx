@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { RepresentativeType } from "@/types";
 import { AlertCircle, Send, Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import * as React from "react";
 
 interface MessageFormProps {
     representative: RepresentativeType;

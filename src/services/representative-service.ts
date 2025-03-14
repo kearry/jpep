@@ -165,7 +165,6 @@ export async function searchRepresentatives(query: string): Promise<Representati
                     user: {
                         name: {
                             contains: query,
-                            mode: "insensitive",
                         },
                     },
                 },
@@ -173,7 +172,6 @@ export async function searchRepresentatives(query: string): Promise<Representati
                     constituency: {
                         name: {
                             contains: query,
-                            mode: "insensitive",
                         },
                     },
                 },

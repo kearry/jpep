@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { ConstituencyType } from "@/types";
+import { Prisma } from "@prisma/client";
 
 /**
  * Fetch all constituencies with basic info
@@ -108,13 +109,11 @@ export async function searchConstituencies(query: string): Promise<ConstituencyT
                 {
                     name: {
                         contains: query,
-                        mode: "insensitive",
                     },
                 },
                 {
                     parish: {
                         contains: query,
-                        mode: "insensitive",
                     },
                 },
             ],
